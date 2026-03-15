@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'GenshinFont';
+    src: url('/frontend/public/zhcn.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'HYWenHei 85W', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #182840;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3a5065;
+    border-radius: 4px;
+    border: 1px solid rgba(204, 164, 120, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #cca478;
+}
+
