@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require("cors");
+const db = require('./src/models/connection.js');
 
 app.use(express.json());
 app.use(cors());
@@ -30,4 +31,12 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, (err) => {
     if (err) console.error("Error starting server:", err);
     console.log(`Listening on port ${PORT}`);
+});
+
+db.query('SELECT NOW()', (err, res) => {
+    if (err) {
+        console.error("ERROR CRITICO DE BASE DE DATOS:", err.message);
+    } else {
+        console.log("BASE DE DATOS CONECTADA.");
+    }
 });
