@@ -25,7 +25,9 @@ app.use("/api/catalogo-armas", armasRoutes);
 
 app.use("/api/auth", authRoutes);
 
-app.listen(3000, (err) => {
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, (err) => {
     if (err) console.error("Error starting server:", err);
-    console.log("Listening on port 3000");
+    console.log(`Listening on port ${PORT}`);
 });
