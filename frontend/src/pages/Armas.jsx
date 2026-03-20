@@ -26,7 +26,7 @@ export default function Armas() {
 
     const cargarMisArmas = async () => {
         try {
-            const res = await axios.get(`http://localhost:3000/api/mis-armas/${USUARIO_ID}`);
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/mis-armas/${USUARIO_ID}`);
             setMisArmas(res.data);
         } catch (error) {
             mostrarAlerta("error", "Error al cargar tus armas.");
@@ -35,7 +35,7 @@ export default function Armas() {
 
     const cargarCatalogo = async () => {
         try {
-            const res = await axios.get("http://localhost:3000/api/catalogo-armas");
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/catalogo-armas`);
             setCatalogo(res.data);
         } catch (error) {
             console.error("Error al cargar el catálogo de armas", error);
@@ -73,10 +73,10 @@ export default function Armas() {
 
         try {
             if (modoEdicion) {
-                await axios.put(`http://localhost:3000/api/mis-armas/${formData.id}`, formData);
+                await axios.put(`${import.meta.env.VITE_API_URL}/api/mis-armas/${formData.id}`, formData);
                 mostrarAlerta("exito", "Estadísticas del arma actualizadas.");
             } else {
-                await axios.post("http://localhost:3000/api/mis-armas", {
+                await axios.post(`${import.meta.env.VITE_API_URL}/api/mis-armas`, {
                     usuario_id: USUARIO_ID,
                     arma_id: formData.arma_id
                 });
@@ -92,7 +92,7 @@ export default function Armas() {
     const eliminarArma = async (id) => {
         if (!window.confirm("¿Seguro que deseas eliminar esta arma de tu inventario?")) return;
         try {
-            await axios.delete(`http://localhost:3000/api/mis-armas/${id}`);
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/mis-armas/${id}`);
             mostrarAlerta("exito", "Arma eliminada.");
             cargarMisArmas();
         } catch (error) {

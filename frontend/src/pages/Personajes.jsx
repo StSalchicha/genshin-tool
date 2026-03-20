@@ -27,7 +27,7 @@ export default function Personajes() {
 
     const cargarMisPersonajes = async () => {
         try {
-            const res = await axios.get(`http://localhost:3000/api/mis-personajes/${USUARIO_ID}`);
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/mis-personajes/${USUARIO_ID}`);
             setMisPersonajes(res.data);
         } catch (error) {
             mostrarAlerta("error", "Error al cargar tus personajes.");
@@ -36,7 +36,7 @@ export default function Personajes() {
 
     const cargarCatalogo = async () => {
         try {
-            const res = await axios.get("http://localhost:3000/api/catalogo-personajes");
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/catalogo-personajes`);
             setCatalogo(res.data);
         } catch (error) {
             console.error("Error al cargar catálogo", error);
@@ -77,10 +77,10 @@ export default function Personajes() {
 
         try {
             if (modoEdicion) {
-                await axios.put(`http://localhost:3000/api/mis-personajes/${formData.id}`, formData);
+                await axios.put(`${import.meta.env.VITE_API_URL}/api/mis-personajes/${formData.id}`, formData);
                 mostrarAlerta("exito", "Estadísticas actualizadas correctamente.");
             } else {
-                await axios.post("http://localhost:3000/api/mis-personajes", {
+                await axios.post(`${import.meta.env.VITE_API_URL}/api/mis-personajes`, {
                     usuario_id: USUARIO_ID,
                     personaje_id: formData.personaje_id
                 });
@@ -96,7 +96,7 @@ export default function Personajes() {
     const eliminarPersonaje = async (id) => {
         if (!window.confirm("¿Seguro que deseas eliminar este personaje de tu cuenta?")) return;
         try {
-            await axios.delete(`http://localhost:3000/api/mis-personajes/${id}`);
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/mis-personajes/${id}`);
             mostrarAlerta("exito", "Personaje eliminado.");
             cargarMisPersonajes();
         } catch (error) {

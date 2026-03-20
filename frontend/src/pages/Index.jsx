@@ -19,7 +19,7 @@ export default function Index() {
 
         try {
             const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
-            const res = await axios.post(`http://localhost:3000${endpoint}`, formData);
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}${endpoint}`, formData);
 
             localStorage.setItem('usuario', JSON.stringify(res.data));
             navigate('/personajes');
